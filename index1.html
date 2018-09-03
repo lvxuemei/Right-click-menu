@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            
+        }
+        #menu{
+            cursor: pointer;
+            display:none;
+            position:absolute;
+        }
+    ul,ol{
+        list-style-type:none;
+    }
+    span{
+        background: #000;
+        color:#fff;
+        display:block;
+
+    }
+    .chil>*{
+    width: 200px;
+    text-align: center;
+    }
+    ul{
+        display:none;
+    }
+    ul li{
+        background: #f8f8f8;
+    }
+    ul li:hover{
+        background: green;
+        color:#fff;
+    }
+    p{
+        font-size:30px;
+        font-weight:bold;
+        text-align: center;
+        padding-top:200px;
+    }
+    </style>
+</head>
+<body>
+    <p>右键点击</p>
+    <div id="menu">
+        <div class="chil">
+            <span>第一块</span>
+            <ul>
+                <li>11111</li>
+                <li>22222</li>
+                <li>33333</li>
+                <li>44444</li>
+            </ul>
+        
+        </div> 
+        <div class="chil">
+            <span>第二块</span>
+            <ul>
+                <li>11111</li>
+                <li>22222</li>
+                <li>33333</li>
+                <li>44444</li>
+            </ul> 
+        </div>
+        <div class="chil">
+                <span>第三块</span>
+                <ul>
+                    <li>11111</li>
+                    <li>22222</li>
+                    <li>33333</li>
+                    <li>44444</li>
+                </ul> 
+            </div>
+    </div>
+    <script>
+    var oMenu=document.getElementById("menu");
+    var oSpan=document.getElementById("menu").getElementsByTagName("span");
+    var oUl=document.getElementById("menu").getElementsByTagName("ul");
+    var n=0;
+    document.oncontextmenu=function(event){//右键
+        var e=e||window.event;
+        oMenu.style.display="block";
+       oMenu.style.left=e.clientX+"px";
+       oMenu.style.top=e.clientY+"px";
+       return false;
+    }
+    function fn(){ //ul显示为None;
+    for(var j=0;j<=2;j++){
+            oUl[j].style.display="none";
+        }
+    }
+
+
+    for(var i=0;i<=2;i++){//左键点击一下出现两下ul消失
+        oSpan[i].index=i;
+        oSpan[i].onclick=function(){
+         n++;
+         if(n%2==1){
+         fn();
+      oUl[this.index].style.display="block";
+    }
+    else{
+       fn();
+    }
+    
+    }
+    }
+    </script>
+</body>
+</html>
